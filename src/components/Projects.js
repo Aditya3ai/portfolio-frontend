@@ -380,7 +380,6 @@ const Projects = () => {
 };
 
 export default Projects;
-import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import './Projects.enhanced.css';
 import githubIcon from '../assets/aws/github.svg';

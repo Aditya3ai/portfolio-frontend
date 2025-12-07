@@ -5,6 +5,9 @@ import githubIcon from '../assets/aws/github.svg';
 import linkedinIcon from '../assets/aws/linkedin.svg';
 import credlyIcon from '../assets/aws/credly.png';
 
+// Use env var for API base URL in production, fallback to the provided Render URL
+const CONTACT_API = process.env.REACT_APP_CONTACT_API || 'https://portfolio-backend-bq1w.onrender.com';
+
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('');
@@ -17,7 +20,7 @@ const Contact = () => {
     e.preventDefault();
     setStatus('Sending...');
     try {
-      const res = await fetch('https://portfolio-backend-bq1w.onrender.com/api/contact', {
+      const res = await fetch(`${CONTACT_API}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

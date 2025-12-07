@@ -1,0 +1,338 @@
+/* Skills Section Container - compacted */
+/* Cyberpunk Neon Skills CSS */
+:root{
+  --bg:#07111a;
+  --panel:#071721;
+  --neon-cyan: #00f0ff;
+  --neon-green: #00ff85;
+  --neon-mag: #ff3da6;
+  --neon-blue: #6fc3ff;
+  --muted:#9fb3c8;
+}
+
+/* Prevent horizontal scrolling site-wide (per request: only on body) */
+body{ overflow-x: hidden; }
+
+.skills-section.cyberpunk-skills{
+  /* remove horizontal whitespace so section spans full viewport width */
+  padding: 3.5rem 0 2rem; /* keep vertical breathing room, remove horizontal gutters */
+  background: linear-gradient(180deg,var(--bg), #05060a);
+  color: #e6eef8;
+  width:100%;
+  box-sizing:border-box;
+}
+
+
+/* Header centered and stronger */
+.skills-header{ max-width:1300px; margin:0 auto 1rem auto; text-align:center; padding:0 1rem }
+.neon-heading{ font-size:4.2rem; margin:0 0 0.4rem 0; color:var(--neon-cyan); letter-spacing:3px; font-weight:900; text-transform:uppercase; text-shadow: 0 0 26px rgba(0,240,255,0.16), 0 0 64px rgba(111,195,255,0.08) }
+.subheading{ font-size:1.6rem; margin:0 0 0.6rem 0; background: linear-gradient(90deg,var(--neon-green),var(--neon-cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight:900; text-transform:uppercase; letter-spacing:1px; position:relative; transition: transform 240ms ease, text-shadow 240ms ease }
+.subheading:after{ content:''; position:absolute; left:50%; transform:translateX(-50%); bottom:-10px; height:6px; width:44%; background:linear-gradient(90deg,var(--neon-cyan),var(--neon-green)); box-shadow:0 0 28px rgba(0,255,133,0.14), 0 0 64px rgba(0,240,255,0.10); border-radius:3px }
+
+/* Hover/focus effect for subtitle (neon uplift) */
+.subheading:hover, .subheading:focus{ transform: translateY(-4px) scale(1.02); text-shadow: 0 0 10px rgba(0,255,133,0.22), 0 0 30px rgba(0,240,255,0.12); cursor:default }
+.skills-desc{ max-width:920px; color:#dbeff7; margin:0 auto 1.25rem auto; font-size:1rem; line-height:1.5 }
+
+.skills-stage{ display:flex; align-items:flex-start; gap:1rem; width:100%; margin:0 auto; padding:0 1rem; justify-content:center; box-sizing:border-box }
+
+/* Left vertical category nav */
+
+/* Thug cyber menu - aggressive left nav */
+.category-nav{ display:flex; flex-direction:column; gap:0.6rem; min-width:200px; align-items:flex-start; padding-left:6px }
+.category-nav .nav-item{ background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(0,0,0,0.05)); border:none; padding:12px 16px; color:rgba(200,214,228,0.6); display:flex; align-items:center; gap:12px; cursor:pointer; border-radius:10px; transform-origin:left center; font-weight:800; text-transform:uppercase; letter-spacing:0.6px }
+.category-nav .nav-item .nav-dot{ width:12px; height:12px; border-radius:3px; background:rgba(255,255,255,0.03); box-shadow:inset 0 -2px 6px rgba(0,0,0,0.6) }
+.category-nav .nav-item .nav-label{ font-size:0.92rem }
+.category-nav .nav-item:not(.active){ color:rgba(200,214,228,0.45); filter:grayscale(10%) brightness(0.9) }
+.category-nav .nav-item.active{ color:var(--neon-cyan); transform:translateX(-14px); box-shadow:0 12px 50px rgba(0,240,255,0.08); background: linear-gradient(90deg, rgba(0,20,30,0.6), rgba(0,10,20,0.4)); border:1px solid rgba(0,240,255,0.06) }
+.category-nav .nav-item.active .nav-dot{ background:linear-gradient(90deg,var(--neon-cyan),var(--neon-green)); box-shadow:0 0 28px rgba(0,240,255,0.18) }
+
+/* animated underline on active nav item */
+.category-nav .nav-item:after{ content:''; position:relative; display:block; height:2px; width:0%; background:linear-gradient(90deg,var(--neon-cyan),var(--neon-red)); margin-left:0; transition:width 420ms cubic-bezier(.2,.9,.2,1); border-radius:2px }
+.category-nav .nav-item.active:after{ width:70%; box-shadow:0 0 18px rgba(255,61,166,0.08), 0 0 36px rgba(0,240,255,0.06) }
+.category-nav .nav-item:hover{ color:var(--neon-blue); box-shadow:0 8px 30px rgba(111,195,255,0.04); transform:translateX(-4px) }
+
+
+/* Category view and sliding wrapper */
+
+.category-view{ position:relative; overflow:hidden; flex:1; min-height:260px; border-radius:12px; display:flex; align-items:center; padding:12px }
+.categories-wrapper{ display:flex; transition:transform 520ms cubic-bezier(.2,.9,.2,1); width:100%; will-change:transform }
+.category-panel{ min-width:100%; padding:22px 28px; box-sizing:border-box; display:flex; flex-direction:column; align-items:center; justify-content:center; opacity:0.92 }
+.panel-title{ color:var(--neon-red); margin:0 0 8px 0; font-size:1.05rem; text-shadow:0 0 12px rgba(255,61,166,0.08) }
+
+.panel-grid{ display:grid; grid-template-columns: repeat(4, minmax(140px, 1fr)); gap:16px; justify-items:center; align-items:start; width:100%; max-width:1200px; margin:0 auto; grid-auto-rows: auto }
+
+/* Skill box - neon glass */
+
+.skill-box{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.22)); border-radius:12px; padding:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; box-shadow: 0 10px 30px rgba(5,12,28,0.6); border:1px solid rgba(120,200,255,0.06); transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms cubic-bezier(.2,.9,.2,1), filter 220ms; cursor:default; backdrop-filter: blur(6px); width:100%; max-width:160px; aspect-ratio:1/1 }
+.skill-box:hover{ transform: translateY(-6px) scale(1.02); box-shadow: 0 26px 64px rgba(20,60,120,0.45); filter: drop-shadow(0 8px 28px rgba(0,200,255,0.06)); }
+.skill-box:focus{ outline: none; box-shadow: 0 26px 64px rgba(20,60,120,0.55) }
+.skill-icon img{ width:48px; height:48px; object-fit:contain; filter: drop-shadow(0 8px 26px rgba(0,0,0,0.6)); max-width:60% }
+.skill-label{ font-size:0.98rem; color:#eaf8ff; font-weight:800; text-shadow:0 0 10px rgba(111,195,255,0.04); text-align:center; word-break:break-word }
+
+/* Active panel subtle fade/slide - using active-idx class on .category-view */
+.category-view[class*="active-idx-"] .category-panel{ opacity:0.7; transform: translateY(6px) }
+.category-view.active-idx-0 .category-panel:nth-child(1),
+.category-view.active-idx-1 .category-panel:nth-child(2),
+.category-view.active-idx-2 .category-panel:nth-child(3),
+.category-view.active-idx-3 .category-panel:nth-child(4),
+.category-view.active-idx-4 .category-panel:nth-child(5),
+.category-view.active-idx-5 .category-panel:nth-child(6) {
+  opacity:1; transform: translateY(0); transition: opacity 420ms ease, transform 420ms ease;
+}
+
+/* Controls */
+.stage-controls{ display:none }
+.ctrl{ display:none }
+
+/* Responsive adjustments */
+
+/* Layout breakpoints per spec:
+   - Desktop (>=1024px): 4 columns (keeps current neon desktop design)
+   - Tablet (768px - 1023px): 2 columns
+   - Mobile (<=767px): stacked category cards with icon rows inside each card
+*/
+
+@media (min-width: 1024px){
+  /* Desktop: keep existing 4-column layout exactly */
+  .panel-grid{ grid-template-columns: repeat(4, minmax(140px, 1fr)); gap:16px }
+  .category-nav{ min-width:200px }
+}
+
+@media (min-width: 768px) and (max-width: 1023px){
+  /* Tablet: 2 columns to preserve card size and neon styling */
+  .panel-grid{ grid-template-columns: repeat(2, minmax(140px, 1fr)); gap:16px }
+  .category-nav{ min-width:160px }
+}
+
+@media (max-width: 767px){
+  /* Mobile fallback: stacked category cards. All category panels visible, stacked vertically.
+     Use CSS Grid inside each category to present icons as a horizontal scrolling row (grid-auto-flow: column)
+     so icons remain visible and touch-friendly without changing desktop styles. */
+
+  .skills-stage{ flex-direction:column }
+  .category-nav{ order:-1; flex-direction:row; overflow-x:auto; gap:0.6rem; min-width:0; padding:8px 6px; justify-content:flex-start }
+  .category-nav .nav-item{ padding:8px 12px; white-space:nowrap }
+
+  /* show all panels stacked (not a single-active panel) */
+  .categories-wrapper{ display:block; width:100%; transform:none }
+  .category-panel{ display:block; opacity:1; transform:none; padding:18px; align-items:flex-start; width:100%; box-sizing:border-box }
+
+  /* make category panels visually card-like and ensure full-width on mobile */
+  /* stronger selector to ensure mobile fallback overrides desktop neon styles */
+  .skills-section.cyberpunk-skills .category-panel{ background: #ffffff !important; color: #0b1a23 !important; border-radius:12px; margin:12px 0; box-shadow: 0 8px 28px rgba(2,6,23,0.06); border:1px solid rgba(0,0,0,0.06); }
+
+  .panel-title{ color: #0b1a23; margin-bottom: 12px; }
+
+  /* Icons row: horizontal scroll using CSS Grid (auto-flow: column) so touch scroll works
+     while still using Grid per requirements */
+  .panel-grid{ display:grid; grid-auto-flow: column; grid-auto-columns: minmax(80px, 1fr); gap:12px; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:8px; align-items:center; }
+
+  /* Each skill box should be touch friendly and not exceed container width */
+  .skill-box{ width:100%; max-width:100%; aspect-ratio:1/1; padding:12px }
+  .skill-label{ font-size:0.92rem; color: #0b1a23; }
+
+  /* Ensure icons scale down modestly on small screens and remain visible on white cards */
+  .skill-icon img{ width:40px; height:40px }
+  .skills-section.cyberpunk-skills .skill-icon img{ filter: none !important } 
+}
+
+@media (max-width: 720px){
+  /* Mobile tabbed layout: show category nav as horizontal tabs and only the active category panel below.
+     The active panel's skills are a horizontally-scrollable row to keep content compact and reachable. */
+  .skills-stage{ flex-direction:column }
+  .category-nav{ order:-1; flex-direction:row; overflow-x:auto; gap:0.6rem; min-width:0; padding:8px 6px; justify-content:flex-start }
+  .category-nav .nav-item{ padding:8px 12px; white-space:nowrap }
+
+  /* Keep the wrapper from sliding and show panels individually based on active index */
+  .categories-wrapper{ display:block; width:100%; transform:none }
+  .category-panel{ display:none; opacity:0; transform:none; padding:12px 8px; align-items:flex-start }
+
+  .category-view.active-idx-0 .category-panel:nth-child(1),
+  .category-view.active-idx-1 .category-panel:nth-child(2),
+  .category-view.active-idx-2 .category-panel:nth-child(3),
+  .category-view.active-idx-3 .category-panel:nth-child(4),
+  .category-view.active-idx-4 .category-panel:nth-child(5),
+  .category-view.active-idx-5 .category-panel:nth-child(6) {
+    display:block;
+    opacity:1;
+  }
+
+  /* Mobile: use responsive grid (no horizontal scrolling). 1-per-row enforced above at 600px */
+  .panel-grid{ display:grid; grid-template-columns: repeat(1, minmax(120px, 1fr)); gap:12px; padding-bottom:6px }
+
+  .skill-box{ width:100%; max-width:420px; aspect-ratio:1/1 }
+  .skill-label{ font-size:0.92rem }
+}
+@media (max-width: 420px){
+  .panel-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); gap:10px }
+  .skill-box{ width:100%; max-width:110px }
+  .skill-icon img{ width:24px;height:24px }
+  .neon-heading{font-size:2rem}
+}
+
+/* Neon accent on hover/focus for accessibility */
+.skill-box:hover, .skill-box:focus{ border-color: rgba(111,195,255,0.18); }
+
+/* prefer reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .categories-wrapper, .skill-box, .ctrl{ transition:none !important; }
+}
+
+/* small utility */
+.skills-desc{ opacity:0.9 }
+
+/* ----------------------------- */
+/* Cyberpunk / Neon static overrides for Skills (no layout changes) */
+/* ----------------------------- */
+
+/* Darken the section background to match About, keep max-width and centering */
+.skills-section{
+  background-color: #0f1b2b; /* dark tech background */
+  color: #e6eef8;
+}
+
+/* Use existing global neon-heading if present */
+.skills-section .neon-heading{font-size:2.5rem;margin-bottom:2.5rem}
+
+/* Category boxes: dark glass, subtle neon edge but static */
+.skill-category{
+  background: linear-gradient(180deg, rgba(6,12,22,0.88), rgba(3,10,20,0.95));
+  border-radius:12px;
+  padding:1.6rem;
+  margin-bottom:2.5rem;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+  border: 1px solid rgba(120,140,255,0.04);
+  color: #eaf6ff;
+  max-width:1000px;
+  margin-left:auto;margin-right:auto;text-align:left;
+}
+
+/* Titles inside categories: subtle neon left accent but static */
+.skill-category h3{
+  color:#eaf3ff;
+  border-left:4px solid rgba(120,140,255,0.14);
+  padding-left:0.5rem;
+  margin-bottom:0.8rem;
+  cursor:default;
+  transition:none;
+  text-shadow: 0 0 6px rgba(120,140,255,0.02);
+}
+
+/* Skill items: convert to dark rounded badges with neon ring feel, but static (no hover transforms) */
+.skill-item{
+  width:72px;height:72px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:0.4rem;overflow:hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+  border:1px solid rgba(120,140,255,0.06);
+  box-shadow: 0 8px 26px rgba(2,6,23,0.6);
+}
+
+.skill-item img{width:32px;height:32px}
+.skill-item span{margin-top:0.3rem;font-size:0.72rem;font-weight:600;color:#e6eef8}
+
+/* Remove interactive hover transforms (keep purely visual static styling) */
+.skill-item:hover{transform:none;box-shadow:0 8px 26px rgba(2,6,23,0.6)}
+.skill-item:hover img{transform:none}
+
+/* Ensure small-screen sizing preserved */
+@media (max-width:480px){
+  .skill-item{width:60px;height:60px;border-radius:12px}
+  .skill-item img{width:24px;height:24px}
+  .skill-item span{font-size:0.65rem}
+}
+
+/* Disable animations for legacy static elements (exclude new skill-twin elements) */
+.skills-section .skill-item,
+.skills-section .skill-category,
+.skills-section .skills-grid { animation: none !important; transition: none !important }
+
+/* ----------------------------- */
+/* Digital Twin styles (new interactive holograms) */
+/* ----------------------------- */
+.skill-twins-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:1rem;
+  justify-content:space-between;
+  align-items:stretch;
+}
+.skill-twin{
+  flex: 1 1 300px;
+  min-width:260px;
+  max-width:380px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
+  border: 1px solid rgba(120,140,255,0.08);
+  border-radius:12px;
+  padding:1rem;
+  position:relative;
+  overflow:visible;
+  perspective: 900px;
+  transform-style: preserve-3d;
+  z-index:2; /* above global matrix */
+}
+.skill-twin .twin-surface{
+  position:relative;
+  width:100%;
+  height:220px;
+  border-radius:10px;
+  background: linear-gradient(180deg, rgba(10,16,28,0.6), rgba(6,10,18,0.45));
+  border: 1px solid rgba(120,200,255,0.06);
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.skill-twin .twin-surface::after{
+  content:'';position:absolute;inset:0;border-radius:10px;pointer-events:none;
+  box-shadow: inset 0 0 40px rgba(0,120,255,0.04), 0 0 40px rgba(120,20,80,0.02);
+  mix-blend-mode: screen;opacity:0.9;
+}
+.skill-twin .matrix-flow{
+  position:absolute;left:0;top:0;bottom:0;width:22%;pointer-events:none;z-index:2;opacity:0.9;
+  background-image: linear-gradient(90deg, rgba(0,0,0,0), rgba(0,180,255,0.06) 8%, rgba(255,60,120,0.04) 40%, rgba(0,0,0,0));
+  transform: skewX(-12deg) translateX(-8%);
+  animation: flowIn 6s linear infinite;
+}
+@keyframes flowIn{0%{transform:skewX(-12deg) translateX(-12%);opacity:0.45}50%{transform:skewX(-12deg) translateX(-2%);opacity:1}100%{transform:skewX(-12deg) translateX(-12%);opacity:0.45}}
+.skill-twin .twin-surface::before{
+  content:'';
+  position:absolute;inset:0;border-radius:10px;
+  background:linear-gradient(45deg, rgba(255,255,255,0.02), rgba(0,0,0,0.18));
+  pointer-events:none;
+  mix-blend-mode:overlay;
+}
+.twin-title{
+  position:absolute;top:8px;left:12px;font-weight:700;color:#dff8ff;z-index:4;font-size:0.95rem;text-shadow:0 0 8px rgba(120,200,255,0.06);
+}
+.twin-particles{position:absolute;inset:0;pointer-events:none;opacity:0.6}
+.twin-particles span{position:absolute;width:5px;height:5px;border-radius:50%;background:rgba(120,200,255,0.16);animation:particleFloat 5.6s linear infinite;filter:drop-shadow(0 0 6px rgba(120,200,255,0.16))}
+.twin-particles span:nth-child(2n){background:rgba(255,60,120,0.18);filter:drop-shadow(0 0 8px rgba(255,60,120,0.12))}
+.twin-particles span:nth-child(3n){background:rgba(0,220,200,0.18);filter:drop-shadow(0 0 8px rgba(0,220,200,0.12))}
+@keyframes particleFloat{0%{transform:translateY(0) translateX(0) scale(0.6);opacity:0.4}50%{transform:translateY(-40px) translateX(8px) scale(1)}100%{transform:translateY(-80px) translateX(-6px) scale(0.6);opacity:0.2}}
+
+.twin-skills{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:8px;padding-top:18px}
+.marquee{
+  width:100%;overflow:hidden;display:block;--marquee-speed:10s;
+}
+.marquee-inner{display:flex;flex-direction:column;gap:10px;animation:marqueeUp var(--marquee-speed) linear infinite}
+.marquee-inner:hover{animation-play-state:running}
+.twin-skill{display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:8px;background:rgba(255,255,255,0.02);backdrop-filter: blur(4px);color:#dff8ff;font-weight:600}
+.twin-skill img{width:22px;height:22px;opacity:0.95}
+
+@keyframes marqueeUp{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+
+/* hover interactions */
+.skill-twin:hover{transform:translateZ(20px) rotateX(4deg);}
+.skill-twin:hover{transform:translateZ(28px) rotateX(6deg) rotateY(-4deg) scale(1.01)}
+.skill-twin:hover .marquee-inner{animation-duration: calc(var(--marquee-speed) / 1.6)}
+.skill-twin:hover{box-shadow:0 30px 90px rgba(0,120,255,0.14), inset 0 1px 0 rgba(255,255,255,0.03)}
+
+/* expanded overlay */
+.twin-overlay{position:fixed;inset:0;background:rgba(2,6,14,0.72);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;z-index:40}
+.twin-overlay .panel{width:min(900px,92%);max-height:86%;overflow:auto;background:linear-gradient(180deg,rgba(10,16,28,0.94),rgba(3,8,12,0.98));border-radius:12px;padding:1.25rem;border:1px solid rgba(120,200,255,0.06)}
+.twin-overlay .panel h3{color:#dff8ff;margin-bottom:0.75rem}
+.twin-overlay .close-btn{position:absolute;top:18px;right:18px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:#e8fbff;padding:6px 10px;border-radius:8px;cursor:pointer}
+
+/* ensure responsive stacking */
+@media (max-width:900px){.skill-twin{min-width:220px;max-width:320px}.skill-twin .twin-surface{height:180px}}
+@media (max-width:480px){.marquee-inner{gap:8px}.twin-skill{padding:6px 8px}}

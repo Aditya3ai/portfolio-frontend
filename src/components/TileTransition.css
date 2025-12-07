@@ -1,0 +1,81 @@
+.tile-transition{
+  width:100%;
+  background: linear-gradient(180deg, rgba(2,6,12,0.98), rgba(3,8,18,0.98));
+  padding: 10px 0;
+  box-sizing: border-box;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.tile-transition .tile-grid{
+  width:100%;
+  max-width:1200px;
+  display:grid;
+  gap:6px;
+  padding:6px 12px;
+  box-sizing:border-box;
+}
+.tile{
+  width:100%;
+  aspect-ratio: 1/1;
+  background: linear-gradient(180deg, rgba(10,14,20,0.6), rgba(6,8,12,0.6));
+  border-radius:6px;
+  border: 1px solid rgba(255,255,255,0.03);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.6), inset 0 -6px 18px rgba(0,0,0,0.35);
+  transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+  cursor: pointer;
+  outline: none;
+}
+.tile:hover{
+  transform: translateY(-6%) scale(1.02);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.65), 0 0 18px rgba(0,240,255,0.03);
+  background: linear-gradient(180deg, rgba(6,12,20,0.9), rgba(2,4,8,0.9));
+}
+.tile:active, .tile.clicked{
+  transform: scale(0.98);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.7), 0 0 28px rgba(255,30,120,0.06);
+}
+
+/* Neon color variants via background-image overlay using pseudo */
+.tile::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius:6px;
+  pointer-events:none;
+  background-image: linear-gradient(90deg, rgba(255,20,100,0.02), rgba(0,240,255,0.02));
+  mix-blend-mode: screen;
+}
+
+/* subtle scanline */
+.tile-transition::after{
+  content:'';
+  position: absolute;
+  left:0;right:0;top:0;bottom:0;
+  background-image: linear-gradient(180deg, rgba(255,255,255,0.01) 0.5px, transparent 0.5px);
+  background-size: 100% 6px;
+  opacity:0.06;
+  pointer-events:none;
+}
+
+/* color accents on hover (via nth-child) */
+.tile:hover::before{background-image: linear-gradient(90deg, rgba(255,20,100,0.08), rgba(0,240,255,0.06));}
+.tile.clicked::before{background-image: linear-gradient(90deg, rgba(0,255,120,0.12), rgba(255,240,20,0.06));}
+
+/* Responsive: reduce cols on smaller screens by letting grid auto-fit */
+@media (max-width:1200px){
+  .tile-transition .tile-grid{max-width:900px;gap:5px;padding:6px}
+}
+@media (max-width:860px){
+  .tile-transition .tile-grid{max-width:640px;gap:4px;padding:4px}
+}
+@media (max-width:480px){
+  .tile-transition{padding:8px 0}
+  .tile-transition .tile-grid{max-width:100%;gap:3px;padding:2px}
+}
+
+/* Make tiles keyboard-focusable look subtle */
+.tile:focus{box-shadow:0 8px 28px rgba(0,0,0,0.6),0 0 12px rgba(0,240,255,0.06)}
+
+/* ensure no horizontal overflow */
+.tile-transition, .tile-transition .tile-grid{overflow:hidden}

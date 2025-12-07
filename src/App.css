@@ -1,10 +1,207 @@
-.App {
-  text-align: center;
+:root {
+  --primary-color: #4caf50;
+  --primary-light: #81c784;
+  --primary-dark: #388e3c;
+  --secondary-color: #61dafb;
+  --bg-light: #071028; /* changed from white to dark-blue for cyber background */
+  --bg-dark: #0d1117;
+  --text-light: #111111;
+  --text-dark: #c9d1d9;
+  --section-bg-dark: #161b22;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+  --border-radius: 12px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  --gradient-secondary: linear-gradient(135deg, #667eea, #764ba2);
+  --gradient-accent: linear-gradient(135deg, #f093fb, #f5576c);
 }
 
+/* Global box-sizing and overflow fix as requested */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* === CSS Custom Properties === */
+:root {
+  --primary-color: #4caf50;
+  --primary-light: #81c784;
+  --primary-dark: #388e3c;
+  --secondary-color: #61dafb;
+  --bg-light: #ffffff;
+  --bg-dark: #0d1117;
+  --text-light: #111111;
+  --text-dark: #c9d1d9;
+  --section-bg-dark: #161b22;
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+  --border-radius: 12px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  --gradient-secondary: linear-gradient(135deg, #667eea, #764ba2);
+  --gradient-accent: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+/* === Base Reset === */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  line-height: 1.6;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  max-width: 100%;
+  overflow-x: hidden;
+  transition: var(--transition);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* Hide native scrollbars visually but preserve scrolling functionality */
+html, body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+/* WebKit browsers: hide all scrollbars (apply to any element) */
+*::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Firefox fallback */
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* Matrix falling background layer (pure CSS) */
+body::before{
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background-color: rgba(4,10,20,1);
+  pointer-events: none;
+}
+
+/* falling columns using repeating-linear-gradient and animated background-position */
+body::after{
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background-image:
+    radial-gradient(rgba(0,0,0,0.0) 10%, rgba(0,0,0,0.0) 100%),
+    linear-gradient( to bottom, rgba(0,0,0,0), rgba(0,0,0,0.08) );
+  mix-blend-mode: overlay;
+}
+
+/* lightweight 'matrix rain' overlay using pseudo-elements on html to avoid affecting layout */
+html::before{
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0,255,140,0.02) 0 1px, transparent 1px 18px),
+    repeating-linear-gradient(90deg, rgba(0,200,255,0.01) 0 1px, transparent 1px 30px);
+  opacity: 0.22;
+  animation: matrixShift 8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes matrixShift{
+  from{transform: translateY(0)}
+  to{transform: translateY(120px)}
+}
+
+/* === Dark Mode === */
+body.dark-mode {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+body.dark-mode .section {
+  background-color: var(--section-bg-dark);
+}
+
+body.dark-mode a {
+  color: var(--secondary-color);
+}
+
+/* === App Container === */
+.App {
+  text-align: center;
+  position: relative;
+  min-height: 100vh;
+}
+
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* === Enhanced Header === */
+.App-header {
+  background: linear-gradient(135deg, #282c34, #1a1d23);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.App-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(97, 218, 251, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* === Enhanced Logo === */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  filter: drop-shadow(0 0 20px rgba(97, 218, 251, 0.3));
+  transition: var(--transition);
+}
+
+.App-logo:hover {
+  filter: drop-shadow(0 0 30px rgba(97, 218, 251, 0.5));
+  transform: scale(1.05);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,26 +210,281 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* === Enhanced Links === */
+.App-link {
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: var(--transition);
+}
+
+.App-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-primary);
+  transition: var(--transition);
+}
+
+.App-link:hover {
+  color: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+.App-link:hover::after {
+  width: 100%;
+}
+
+/* === Theme Toggle Button === */
+.theme-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 8px 25px var(--shadow-light);
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 12px 35px var(--shadow-dark);
+}
+
+.theme-toggle:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* === Container === */
+.container {
+  width: 100%;
+  /* keep the global container for other sections but do not force About to be boxed */
+  padding: 4rem 1rem 2rem;
+  margin-top: 2rem;
+}
+
+/* === Section Styling === */
+.section {
+  margin-bottom: 5rem;
+  padding: 4rem 0;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Full-bleed wrapper for sections that must span the viewport (About) */
+.full-bleed-section{
+  width: 100vw;
+  max-width: 100%;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 0;
+  border-radius: 0;
+  overflow: visible; /* allow inner content like photo glow */
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: var(--transition);
+}
+
+.section:hover::before {
+  left: 100%;
+}
+
+/* === Enhanced Animations === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* === Utility Classes === */
+.fade-in {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.slide-in {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .glass-effect {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* === Responsive Design === */
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .section {
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+  }
+  
+  .theme-toggle {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .App-header {
+    font-size: calc(8px + 2vmin);
+  }
+  
+  .App-logo {
+    height: 30vmin;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem 0.25rem;
+  }
+  
+  .section {
+    margin-bottom: 2rem;
+    padding: 1.5rem 0;
+  }
+}
+
+/* Specific overrides for About to allow true full-bleed background */
+.full-bleed-section {
+  /* make section truly full-viewport width */
+  width: 100vw;
+  max-width: 100%;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 3.5rem;
+  border-radius: 0;
+  overflow: visible; /* prevent clipping of glow / profile */
+}
+
+/* Ensure the about-section (inside the wrapper) spans the viewport */
+.full-bleed-section .about-section{
+  width: 100vw;
+  max-width: 100%;
+  margin: 0; /* remove any section offsets */
+  padding-left: 0.75rem; /* control inner spacing only */
+  padding-right: 0.75rem;
+}
+
+/* === Print Styles === */
+@media print {
+  .theme-toggle {
+    display: none;
+  }
+  
+  .App-header {
+    background: none;
+    color: black;
+    min-height: auto;
+  }
+  
+  .section {
+    page-break-inside: avoid;
+  }
+}
+
+/* === Accessibility Improvements === */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* === Focus Styles === */
+.toggle-input:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.App-link:focus-visible {
+  outline: 2px solid var(--secondary-color);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* === High Contrast Mode === */
+@media (prefers-contrast: high) {
+  .toggle-base {
+    background: var(--primary-color);
+    border: 2px solid var(--text-light);
+  }
+  
+  .App-link {
+    text-decoration: underline;
   }
 }

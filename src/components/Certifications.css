@@ -1,0 +1,81 @@
+/* Certifications section - cyberpunk / skills-consistent styles */
+:root{
+  --neon-cyan: #00f0ff;
+  --neon-green: #00ff85;
+}
+
+.certifications-section{
+  /* full-bleed section like Skills */
+  padding: 3.2rem 0 2rem;
+  width: 100%; /* avoid 100vw which can cause horizontal overflow */
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #07111a, #05060a);
+  color: #e6f6ff;
+  overflow-x: hidden; /* ensure the section never creates a horizontal scrollbar */
+}
+
+.certifications-section .certs-header{ max-width:1300px; margin:0 auto 1rem auto; text-align:center; padding:0 1rem }
+.certifications-section .neon-heading{
+  /* responsive heading that scales to viewport but stays within bounds */
+  font-size: clamp(1.8rem, 5.8vw, 3.2rem);
+  margin:0 0 0.4rem 0;
+  color: var(--neon-cyan);
+  letter-spacing:2px;
+  font-weight:900;
+  text-transform:uppercase;
+  text-shadow: 0 0 18px rgba(0,240,255,0.12), 0 0 44px rgba(111,195,255,0.06);
+  line-height:1.02;
+  word-break:normal;
+}
+.certifications-section .subheading{ font-size:1.2rem; margin:0 0 0.8rem 0; background: linear-gradient(90deg,var(--neon-green),var(--neon-cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight:900; text-transform:uppercase; letter-spacing:1px; position:relative }
+.certifications-section .subheading:after{ content:''; position:absolute; left:50%; transform:translateX(-50%); bottom:-10px; height:6px; width:36%; background:linear-gradient(90deg,var(--neon-cyan),var(--neon-green)); box-shadow:0 0 28px rgba(0,255,133,0.12), 0 0 48px rgba(0,240,255,0.06); border-radius:3px }
+
+.cert-grid{
+  max-width:1300px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem;
+  align-items: stretch;
+}
+
+.cert-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.22));
+  border-radius: 14px;
+  padding: 1.1rem;
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  box-shadow: 0 14px 44px rgba(5,12,28,0.7);
+  border: 1px solid rgba(120,200,255,0.06);
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms cubic-bezier(.2,.9,.2,1);
+  backdrop-filter: blur(6px);
+}
+
+.cert-card:hover{ transform: translateY(-10px) scale(1.02); box-shadow: 0 36px 84px rgba(20,60,120,0.6) }
+
+.cert-media img{
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.22);
+  padding: 8px;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+}
+
+.cert-body h3{ margin: 0 0 6px 0; font-size: 1.05rem; color: #eafcff; font-weight:800 }
+.cert-body p{ margin: 0; color: #9fc7dd; font-size: 0.95rem }
+
+@media (max-width: 900px){
+  .cert-grid{ grid-template-columns: 1fr 1fr }
+}
+@media (max-width: 640px){
+  .cert-grid{ grid-template-columns: 1fr }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .cert-card { transition: none !important }
+}

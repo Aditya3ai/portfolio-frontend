@@ -276,8 +276,7 @@ const Projects = () => {
         const dist = Math.sqrt(dxC * dxC + dyC * dyC);
         const maxDist = Math.min(window.innerWidth, window.innerHeight) * 0.6;
         const t = Math.max(0, 1 - Math.min(dist / maxDist, 1));
-        const intensity = 0.08 + t * 0.28; // 0.08..0.36
-        card.style.boxShadow = `0 ${20 + t * 60}px ${60 + t * 120}px rgba(0,160,255,${0.06 + t * 0.24})`; 
+        card.style.boxShadow = `0 ${20 + t * 60}px ${60 + t * 120}px rgba(0,160,255,${0.06 + t * 0.24})`;
       }
       card.classList.add('tilted');
     };
@@ -303,7 +302,7 @@ const Projects = () => {
         card.removeEventListener('pointerleave', handleLeave);
       });
     };
-  }, []);
+  }, [prefersReduced]);
 
   return (
     <section id="projects" className="projects-section" ref={sectionRef}>
@@ -326,7 +325,7 @@ const Projects = () => {
             <motion.div
               key={project.title}
               className={`project-card ${project.featured ? 'featured' : ''}`}
-              style={{ ['--accent-color']: accent }}
+              style={{ '--accent-color': accent }}
               onClick={() => setFlipped(prev => ({ ...prev, [idx]: !prev[idx] }))}
             >
               <div className={`card-inner ${flipped[idx] ? 'flipped' : ''}`}>

@@ -3,7 +3,6 @@ import './Contact.css';
 
 import githubIcon from '../assets/aws/github.svg';
 import linkedinIcon from '../assets/aws/linkedin.svg';
-import emailIcon from '../assets/aws/email.svg';
 import credlyIcon from '../assets/aws/credly.png';
 
 const Contact = () => {
